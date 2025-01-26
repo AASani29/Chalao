@@ -12,8 +12,13 @@ export const createLicense = async (req, res, next) => {
       utilityBill: req.files?.utilityBill?.[0]?.path || '',
     };
 
-    // Combine request body with file paths
-    const licenseData = { ...req.body, attachments };
+    // Parse vehicleClass as an array (if it's not already an array)
+    const vehicleClass = Array.isArray(req.body.vehicleClass)
+      ? req.body.vehicleClass
+      : req.body.vehicleClass?.split(',').map((v) => v.trim());
+
+    // Combine request body with file paths and parsed vehicleClass
+    const licenseData = { ...req.body, vehicleClass, attachments };
 
     // Create a new document
     const newLicense = new License(licenseData);
@@ -21,11 +26,16 @@ export const createLicense = async (req, res, next) => {
     // Save to the database
     await newLicense.save();
 
-    res.status(201).json({ success: true, message: 'Your application for learner license is submitted successfully', data: newLicense });
+    res.status(201).json({
+      success: true,
+      message: 'Your application for learner license is submitted successfully',
+      data: newLicense,
+    });
   } catch (error) {
     next(error); // Handle errors using middleware
   }
 };
+
 
 // Get all license entries
 export const getAllLicenses = async (req, res, next) => {

@@ -22,7 +22,7 @@ export default function LicenseInfo() {
               <li>
                 Medical Certificate from a registered Doctor (Maximum size 600 KB). To download the Medical Certificate form,{" "}
                 <a
-                  href="#"
+                  href="https://bsp.brta.gov.bd/resources/pdf/DL%20Medical%20Form.pdf"
                   className="text-blue-500 underline"
                 >
                   Click Here

@@ -21,22 +21,22 @@ export default function Header() {
             </button>
             <div className="absolute hidden group-hover:block bg-white shadow-lg rounded mt-2">
               <Link
-                to="/service1"
+                to="/licensepage"
                 className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
               >
-                Service 1
+                Driving License
               </Link>
               <Link
                 to="/service2"
                 className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
               >
-                Service 2
+                Written Exam
               </Link>
               <Link
                 to="/service3"
                 className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
               >
-                Service 3
+                Viva Exam
               </Link>
             </div>
           </div>

@@ -213,42 +213,43 @@ export default function Registration() {
                   <option value="PROFESSIONAL">Professional</option>
                 </select>
                 <div>
-                  <label className="block mb-2 font-semibold">Vehicle Class</label>
-                  <label className="flex items-center">
-                    <input
-                      type="checkbox"
-                      value="MOTORCYCLE"
-                      checked={formData.vehicleClass.includes("MOTORCYCLE")}
-                      onChange={(e) =>
-                        setFormData({
-                          ...formData,
-                          vehicleClass: e.target.checked
-                            ? [...formData.vehicleClass, e.target.value]
-                            : formData.vehicleClass.filter((v) => v !== e.target.value),
-                        })
-                      }
-                      className="mr-2"
-                    />
-                    Motorcycle
-                  </label>
-                  <label className="flex items-center">
-                    <input
-                      type="checkbox"
-                      value="LIGHT"
-                      checked={formData.vehicleClass.includes("LIGHT")}
-                      onChange={(e) =>
-                        setFormData({
-                          ...formData,
-                          vehicleClass: e.target.checked
-                            ? [...formData.vehicleClass, e.target.value]
-                            : formData.vehicleClass.filter((v) => v !== e.target.value),
-                        })
-                      }
-                      className="mr-2"
-                    />
-                    Light
-                  </label>
-                </div>
+  <label className="block mb-2 font-semibold">Vehicle Class</label>
+  <label className="flex items-center">
+    <input
+      type="checkbox"
+      value="MOTORCYCLE"
+      checked={formData.vehicleClass.includes("MOTORCYCLE")}
+      onChange={(e) =>
+        setFormData((prev) => ({
+          ...prev,
+          vehicleClass: e.target.checked
+            ? [...new Set([...prev.vehicleClass, e.target.value])]
+            : prev.vehicleClass.filter((v) => v !== e.target.value),
+        }))
+      }
+      className="mr-2"
+    />
+    Motorcycle
+  </label>
+  <label className="flex items-center">
+    <input
+      type="checkbox"
+      value="LIGHT"
+      checked={formData.vehicleClass.includes("LIGHT")}
+      onChange={(e) =>
+        setFormData((prev) => ({
+          ...prev,
+          vehicleClass: e.target.checked
+            ? [...new Set([...prev.vehicleClass, e.target.value])]
+            : prev.vehicleClass.filter((v) => v !== e.target.value),
+        }))
+      }
+      className="mr-2"
+    />
+    Light
+  </label>
+</div>
+
               </div>
             </div>
           )}
@@ -527,7 +528,15 @@ export default function Registration() {
         className="border rounded-lg p-2"
       >
         <option value="">District</option>
-        {/* Add district options here */}
+        <option value="Dhaka">Dhaka</option>
+        <option value="Chittagong">Chittagong</option>
+        <option value="Cumilla">Cumilla</option>
+        <option value="Sylhet">Sylhet</option>
+        <option value="Khulna">Khulna</option>
+        <option value="Rajshahi">Rajshahi</option>
+        <option value="Barisal">Barisal</option>
+        <option value="Rangpur">Rangpur</option>
+        <option value="Mymensingh">Mymensingh</option>
       </select>
       <select
         name="thana"
@@ -536,7 +545,57 @@ export default function Registration() {
         className="border rounded-lg p-2"
       >
         <option value="">Thana</option>
-        {/* Add thana options here */}
+       
+        <option value="Dhanmondi">Dhanmondi</option>
+<option value="Uttara">Uttara</option>
+<option value="Gulshan">Gulshan</option>
+<option value="Mohammadpur">Mohammadpur</option>
+<option value="Mirpur">Mirpur</option>
+<option value="Tejgaon">Tejgaon</option>
+<option value="Kotwali">Kotwali</option>
+<option value="Debidwar">Debidwar</option>
+<option value="Daudkandi">Daudkandi</option>
+<option value="Muradnagar">Muradnagar</option>
+<option value="Homna">Homna</option>
+<option value="Titas">Titas</option>
+<option value="Sylhet Sadar">Sylhet Sadar</option>
+<option value="Beanibazar">Beanibazar</option>
+<option value="Zakiganj">Zakiganj</option>
+<option value="Kanaighat">Kanaighat</option>
+<option value="Companiganj">Companiganj</option>
+<option value="Balaganj">Balaganj</option>
+<option value="Sonadanga">Sonadanga</option>
+<option value="Daulatpur">Daulatpur</option>
+<option value="Khalishpur">Khalishpur</option>
+<option value="Phultala">Phultala</option>
+<option value="Dighalia">Dighalia</option>
+<option value="Batiaghata">Batiaghata</option>
+
+<option value="Boalia">Boalia</option>
+<option value="Paba">Paba</option>
+<option value="Motihar">Motihar</option>
+<option value="Godagari">Godagari</option>
+<option value="Tanore">Tanore</option>
+<option value="Bagmara">Bagmara</option>
+
+<option value="Kotwali">Kotwali</option>
+<option value="Bakerganj">Bakerganj</option>
+<option value="Banaripara">Banaripara</option>
+<option value="Babuganj">Babuganj</option>
+<option value="Wazirpur">Wazirpur</option>
+<option value="Agailjhara">Agailjhara</option>
+<option value="Rangpur Sadar">Rangpur Sadar</option>
+<option value="Mithapukur">Mithapukur</option>
+<option value="Pirganj">Pirganj</option>
+<option value="Taraganj">Taraganj</option>
+<option value="Badarganj">Badarganj</option>
+<option value="Gangachara">Gangachara</option>
+<option value="Mymensingh Sadar">Mymensingh Sadar</option>
+<option value="Trishal">Trishal</option>
+<option value="Gafargaon">Gafargaon</option>
+<option value="Ishwarganj">Ishwarganj</option>
+<option value="Muktagacha">Muktagacha</option>
+<option value="Nandail">Nandail</option>
       </select>
       <input
         type="text"
@@ -614,8 +673,16 @@ export default function Registration() {
         onChange={handleChange}
         className="border rounded-lg p-2"
       >
-        <option value="">Division</option>
-        {/* Add division options */}
+        
+       <option value="">Division</option>
+        <option value="Dhaka">Dhaka</option>
+        <option value="Chittagong">Chittagong</option>
+        <option value="Sylhet">Sylhet</option>
+        <option value="Khulna">Khulna</option>
+        <option value="Rajshahi">Rajshahi</option>
+        <option value="Barisal">Barisal</option>
+        <option value="Rangpur">Rangpur</option>
+        <option value="Mymensingh">Mymensingh</option>
       </select>
       <select
         name="presentDistrict"
@@ -624,7 +691,16 @@ export default function Registration() {
         className="border rounded-lg p-2"
       >
         <option value="">District</option>
-        {/* Add district options */}
+       
+        <option value="Dhaka">Dhaka</option>
+        <option value="Chittagong">Chittagong</option>
+        <option value="Cumilla">Cumilla</option>
+        <option value="Sylhet">Sylhet</option>
+        <option value="Khulna">Khulna</option>
+        <option value="Rajshahi">Rajshahi</option>
+        <option value="Barisal">Barisal</option>
+        <option value="Rangpur">Rangpur</option>
+        <option value="Mymensingh">Mymensingh</option>
       </select>
       <select
         name="presentThana"
@@ -633,7 +709,58 @@ export default function Registration() {
         className="border rounded-lg p-2"
       >
         <option value="">Thana</option>
-        {/* Add thana options */}
+        <option value="Dhanmondi">Dhanmondi</option>
+<option value="Uttara">Uttara</option>
+<option value="Gulshan">Gulshan</option>
+<option value="Mohammadpur">Mohammadpur</option>
+<option value="Mirpur">Mirpur</option>
+<option value="Tejgaon">Tejgaon</option>
+<option value="Kotwali">Kotwali</option>
+<option value="Debidwar">Debidwar</option>
+<option value="Daudkandi">Daudkandi</option>
+<option value="Muradnagar">Muradnagar</option>
+<option value="Homna">Homna</option>
+<option value="Titas">Titas</option>
+<option value="Sylhet Sadar">Sylhet Sadar</option>
+<option value="Beanibazar">Beanibazar</option>
+<option value="Zakiganj">Zakiganj</option>
+<option value="Kanaighat">Kanaighat</option>
+<option value="Companiganj">Companiganj</option>
+<option value="Balaganj">Balaganj</option>
+<option value="Sonadanga">Sonadanga</option>
+<option value="Daulatpur">Daulatpur</option>
+<option value="Khalishpur">Khalishpur</option>
+<option value="Phultala">Phultala</option>
+<option value="Dighalia">Dighalia</option>
+<option value="Batiaghata">Batiaghata</option>
+
+<option value="Boalia">Boalia</option>
+<option value="Paba">Paba</option>
+<option value="Motihar">Motihar</option>
+<option value="Godagari">Godagari</option>
+<option value="Tanore">Tanore</option>
+<option value="Bagmara">Bagmara</option>
+
+<option value="Kotwali">Kotwali</option>
+<option value="Bakerganj">Bakerganj</option>
+<option value="Banaripara">Banaripara</option>
+<option value="Babuganj">Babuganj</option>
+<option value="Wazirpur">Wazirpur</option>
+<option value="Agailjhara">Agailjhara</option>
+<option value="Rangpur Sadar">Rangpur Sadar</option>
+<option value="Mithapukur">Mithapukur</option>
+<option value="Pirganj">Pirganj</option>
+<option value="Taraganj">Taraganj</option>
+<option value="Badarganj">Badarganj</option>
+<option value="Gangachara">Gangachara</option>
+<option value="Mymensingh Sadar">Mymensingh Sadar</option>
+<option value="Trishal">Trishal</option>
+<option value="Gafargaon">Gafargaon</option>
+<option value="Ishwarganj">Ishwarganj</option>
+<option value="Muktagacha">Muktagacha</option>
+<option value="Nandail">Nandail</option>
+
+
       </select>
       <input
         type="text"
@@ -752,7 +879,14 @@ export default function Registration() {
             className="border p-2 rounded w-full"
           >
             <option value="">Please Select One</option>
-            {/* Add options dynamically or statically */}
+            <option value="Dhaka">Dhaka</option>
+        <option value="Chittagong">Chittagong</option>
+        <option value="Sylhet">Sylhet</option>
+        <option value="Khulna">Khulna</option>
+        <option value="Rajshahi">Rajshahi</option>
+        <option value="Barisal">Barisal</option>
+        <option value="Rangpur">Rangpur</option>
+        <option value="Mymensingh">Mymensingh</option>
             <option value="DHAKA">Dhaka</option>
             <option value="CHITTAGONG">Chittagong</option>
           </select>
@@ -766,9 +900,58 @@ export default function Registration() {
             className="border p-2 rounded w-full"
           >
             <option value="">Please Select One</option>
-            {/* Add options dynamically or statically */}
-            <option value="UTTARA">Uttara</option>
-            <option value="MIRPUR">Mirpur</option>
+            <option value="Dhanmondi">Dhanmondi</option>
+<option value="Uttara">Uttara</option>
+<option value="Gulshan">Gulshan</option>
+<option value="Mohammadpur">Mohammadpur</option>
+<option value="Mirpur">Mirpur</option>
+<option value="Tejgaon">Tejgaon</option>
+<option value="Kotwali">Kotwali</option>
+<option value="Debidwar">Debidwar</option>
+<option value="Daudkandi">Daudkandi</option>
+<option value="Muradnagar">Muradnagar</option>
+<option value="Homna">Homna</option>
+<option value="Titas">Titas</option>
+<option value="Sylhet Sadar">Sylhet Sadar</option>
+<option value="Beanibazar">Beanibazar</option>
+<option value="Zakiganj">Zakiganj</option>
+<option value="Kanaighat">Kanaighat</option>
+<option value="Companiganj">Companiganj</option>
+<option value="Balaganj">Balaganj</option>
+<option value="Sonadanga">Sonadanga</option>
+<option value="Daulatpur">Daulatpur</option>
+<option value="Khalishpur">Khalishpur</option>
+<option value="Phultala">Phultala</option>
+<option value="Dighalia">Dighalia</option>
+<option value="Batiaghata">Batiaghata</option>
+
+<option value="Boalia">Boalia</option>
+<option value="Paba">Paba</option>
+<option value="Motihar">Motihar</option>
+<option value="Godagari">Godagari</option>
+<option value="Tanore">Tanore</option>
+<option value="Bagmara">Bagmara</option>
+
+<option value="Kotwali">Kotwali</option>
+<option value="Bakerganj">Bakerganj</option>
+<option value="Banaripara">Banaripara</option>
+<option value="Babuganj">Babuganj</option>
+<option value="Wazirpur">Wazirpur</option>
+<option value="Agailjhara">Agailjhara</option>
+<option value="Rangpur Sadar">Rangpur Sadar</option>
+<option value="Mithapukur">Mithapukur</option>
+<option value="Pirganj">Pirganj</option>
+<option value="Taraganj">Taraganj</option>
+<option value="Badarganj">Badarganj</option>
+<option value="Gangachara">Gangachara</option>
+<option value="Mymensingh Sadar">Mymensingh Sadar</option>
+<option value="Trishal">Trishal</option>
+<option value="Gafargaon">Gafargaon</option>
+<option value="Ishwarganj">Ishwarganj</option>
+<option value="Muktagacha">Muktagacha</option>
+<option value="Nandail">Nandail</option>
+
+            
           </select>
         </div>
         <div>
@@ -780,7 +963,15 @@ export default function Registration() {
             className="border p-2 rounded w-full"
           >
             <option value="">Please Select One</option>
-            {/* Add options dynamically or statically */}
+            <option value="Dhaka">Dhaka</option>
+        <option value="Chittagong">Chittagong</option>
+        <option value="Cumilla">Cumilla</option>
+        <option value="Sylhet">Sylhet</option>
+        <option value="Khulna">Khulna</option>
+        <option value="Rajshahi">Rajshahi</option>
+        <option value="Barisal">Barisal</option>
+        <option value="Rangpur">Rangpur</option>
+        <option value="Mymensingh">Mymensingh</option>
             <option value="DHAKA">Dhaka</option>
             <option value="SYLHET">Sylhet</option>
           </select>
