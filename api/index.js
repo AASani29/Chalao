@@ -9,7 +9,7 @@ import User from './models/user.model.js';
 
 import bcryptjs from 'bcryptjs';
 import cors from 'cors'; 
-
+import licenseRoutes from './routes/license.route.js';
 
 // Load environment variables
 dotenv.config();
@@ -40,11 +40,12 @@ app.use(cors({ origin: 'http://localhost:5173', credentials: true }));
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'client', 'dist')));
+app.use('/uploads', express.static('uploads'));
 
 // API routes
 app.use('/api/users', userRoutes);
 app.use('/api/auth', authRoutes);
-
+app.use('/api/licenses', licenseRoutes);
 
 
 // Catch-all route for serving the client
