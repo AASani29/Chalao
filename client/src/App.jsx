@@ -8,6 +8,8 @@ import Profile from './pages/Profile';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import Registration from './pages/Registration';
+import License from './pages/License';
+
 export default function App() {
   return (
     <BrowserRouter>
@@ -19,6 +21,7 @@ export default function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/exam" element={<Exam />} />
         <Route path="/register" element={<Registration />} />
+        <Route path="/licensepage" element={<License />} />
 
         <Route element={<PrivateRoute />}>
           <Route path="/profile" element={<Profile />} />
