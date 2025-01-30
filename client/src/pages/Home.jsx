@@ -1,30 +1,30 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { FaCar, FaBook, FaMicrophone } from "react-icons/fa"; // Import icons
-import Header from "../components/Header";
+import React from 'react';
+import { FaBook, FaCar, FaMicrophone } from 'react-icons/fa'; // Import icons
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import Header from '../components/Header';
 
 export default function Home() {
-  const { currentUser } = useSelector((state) => state.user);
+  const { currentUser } = useSelector(state => state.user);
 
   const features = [
     {
-      title: "Apply for Driving License",
-      description: "Start your application for a driving license.",
+      title: 'Apply for Driving License',
+      description: 'Start your application for a driving license.',
       icon: <FaCar className="text-4xl text-blue-500" />,
-      link: "/licensepage",
+      link: '/licensepage',
     },
     {
-      title: "Written Exam",
-      description: "Prepare and apply for the written driving exam.",
+      title: 'Written Exam',
+      description: 'Prepare and apply for the written driving exam.',
       icon: <FaBook className="text-4xl text-green-500" />,
-      link: "/written-exam",
+      link: '/written-exam',
     },
     {
-      title: "Viva Exam",
-      description: "Get ready for your viva driving test.",
+      title: 'Viva Exam',
+      description: 'Get ready for your viva driving test.',
       icon: <FaMicrophone className="text-4xl text-red-500" />,
-      link: "/viva-exam",
+      link: '/viva-exam',
     },
   ];
 
@@ -40,7 +40,7 @@ export default function Home() {
             User Dashboard
           </h1>
           <p className="text-lg text-center text-red-600">
-            Welcome to Chalao, {currentUser?.username || "User"}
+            Welcome to Chalao, {currentUser?.username || 'User'}
           </p>
         </div>
 
@@ -56,7 +56,9 @@ export default function Home() {
               <h3 className="text-xl font-semibold text-gray-800 group-hover:text-blue-500">
                 {feature.title}
               </h3>
-              <p className="text-sm text-gray-600 mt-2">{feature.description}</p>
+              <p className="text-sm text-gray-600 mt-2">
+                {feature.description}
+              </p>
             </Link>
           ))}
         </div>

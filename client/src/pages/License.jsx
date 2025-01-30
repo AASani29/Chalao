@@ -1,12 +1,12 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import Header from "../components/Header";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import Header from '../components/Header';
 
 export default function LicenseInfo() {
   const navigate = useNavigate();
 
   const handleAgree = () => {
-    navigate("/register");
+    navigate('/register');
   };
 
   return (
@@ -20,22 +20,25 @@ export default function LicenseInfo() {
           <div className="text-gray-700 space-y-4">
             <ol className="list-decimal pl-6 space-y-2 text-sm sm:text-base">
               <li>
-                Medical Certificate from a registered Doctor (Maximum size 600 KB). To download the Medical Certificate form,{" "}
+                Medical Certificate from a registered Doctor (Maximum size 600
+                KB). To download the Medical Certificate form,{' '}
                 <a
                   href="https://bsp.brta.gov.bd/resources/pdf/DL%20Medical%20Form.pdf"
                   className="text-blue-500 underline"
                 >
                   Click Here
-                </a>.
+                </a>
+                .
               </li>
               <li>Scanned copy of National ID (Maximum size 600 KB).</li>
               <li>
-                Scanned copy of Utility Bill (Maximum size 600 KB) [If the present
-                address is not the same as the National ID address, attach the
-                present address's Utility Bill].
+                Scanned copy of Utility Bill (Maximum size 600 KB) [If the
+                present address is not the same as the National ID address,
+                attach the present address's Utility Bill].
               </li>
               <li>
-                Scanned copy of Educational Certificate (Maximum size 600 KB) [Minimum class 8 pass].
+                Scanned copy of Educational Certificate (Maximum size 600 KB)
+                [Minimum class 8 pass].
               </li>
               <li>A user can apply for only one driving license.</li>
               <li>
@@ -44,8 +47,8 @@ export default function LicenseInfo() {
                 current address of the user.
               </li>
               <li>
-                The applicant must fill in the correct information in both Bengali
-                and English in the online application.
+                The applicant must fill in the correct information in both
+                Bengali and English in the online application.
               </li>
               <li>
                 Legal action will be taken against applicants who provide false

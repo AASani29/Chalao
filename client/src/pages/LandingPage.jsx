@@ -1,14 +1,9 @@
 import React from 'react';
-import { Link } from "react-router-dom";
-
+import { Link } from 'react-router-dom';
 
 const LandingPage = () => {
-  
-
   return (
     <div className="font-sans m-0 p-0 box-border bg-[#f8f1d1]">
-
-
       <header className="bg-transparent absolute w-full z-50 py-4 px-5 md:px-12">
         <div className="flex justify-between items-center">
           <div>
@@ -26,8 +21,6 @@ const LandingPage = () => {
           </div>
         </div>
       </header>
-
-      
     </div>
   );
 };

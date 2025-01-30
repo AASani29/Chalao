@@ -2,15 +2,15 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Exam from './components/ExamComponents/Exam';
 import PrivateRoute from './components/PrivateRoute';
 import AdminDashboard from './pages/AdminDashboard';
+import AdminLicense from './pages/AdminLicense';
+import AdminUsers from './pages/AdminUsers';
 import Home from './pages/Home';
 import LandingPage from './pages/LandingPage';
+import License from './pages/License';
 import Profile from './pages/Profile';
+import Registration from './pages/Registration';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
-import Registration from './pages/Registration';
-import License from './pages/License';
-import AdminUsers from './pages/AdminUsers';
-import AdminLicense from './pages/AdminLicense';
 export default function App() {
   return (
     <BrowserRouter>

@@ -1,59 +1,58 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import OAuth from "../components/OAuth";
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import OAuth from '../components/OAuth';
 import {
+  signInFailure,
   signInStart,
   signInSuccess,
-  signInFailure,
-} from "../redux/user/userSlice";
+} from '../redux/user/userSlice';
 
 export default function SignIn() {
   const [formData, setFormData] = useState({});
-  const { loading, error } = useSelector((state) => state.user);
+  const { loading, error } = useSelector(state => state.user);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
- const handleSubmit = async (e) => {
-  e.preventDefault();
-  try {
-    dispatch(signInStart());
-    const res = await fetch("/api/auth/signin", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
-    const data = await res.json();
+  const handleSubmit = async e => {
+    e.preventDefault();
+    try {
+      dispatch(signInStart());
+      const res = await fetch('/api/auth/signin', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json();
 
-    if (data.success === false) {
-      dispatch(signInFailure(data));
-      return;
+      if (data.success === false) {
+        dispatch(signInFailure(data));
+        return;
+      }
+      dispatch(signInSuccess(data));
+
+      // Redirect based on role
+      if (data.role === 'admin') {
+        navigate('/admindashboard');
+      } else {
+        navigate('/home');
+      }
+    } catch (error) {
+      dispatch(signInFailure(error));
     }
-    dispatch(signInSuccess(data));
-
-    // Redirect based on role
-    if (data.role === "admin") {
-      navigate("/admindashboard");
-    } else {
-      navigate("/home");
-    }
-  } catch (error) {
-    dispatch(signInFailure(error));
-  }
-};
-
+  };
 
   return (
     <div
       className="flex items-center justify-center h-screen bg-cream px-4"
-      style={{ backgroundColor: "#fffff" }}
+      style={{ backgroundColor: '#fffff' }}
     >
       <div className="flex flex-col md:flex-row w-full max-w-6xl items-center justify-between">
         {/* Left Section with Logo and Tagline */}
@@ -92,7 +91,7 @@ export default function SignIn() {
               disabled={loading}
               className="bg-red-600 text-white p-3 rounded-lg uppercase hover:bg-red-800 disabled:opacity-80"
             >
-              {loading ? "Loading..." : "Sign In"}
+              {loading ? 'Loading...' : 'Sign In'}
             </button>
             <OAuth />
           </form>
@@ -107,7 +106,7 @@ export default function SignIn() {
             </Link>
           </div>
           <p className="text-red-700 mt-5">
-            {error ? error.message || "Something went wrong!" : ""}
+            {error ? error.message || 'Something went wrong!' : ''}
           </p>
         </div>
       </div>

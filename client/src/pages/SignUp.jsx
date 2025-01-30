@@ -1,48 +1,48 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import OAuth from "../components/OAuth";
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import OAuth from '../components/OAuth';
 
 export default function SignUp() {
   const [formData, setFormData] = useState({});
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const handleChange = (e) => {
+  const handleChange = e => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
-  e.preventDefault();
-  if (!formData.username || !formData.email || !formData.password) {
-    setError("All fields are required");
-    return;
-  }
-  try {
-    setLoading(true);
-    const res = await fetch("/api/auth/signup", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
-    const data = await res.json();
-    if (!res.ok) {
-      setError(data.message || "Something went wrong");
+  const handleSubmit = async e => {
+    e.preventDefault();
+    if (!formData.username || !formData.email || !formData.password) {
+      setError('All fields are required');
       return;
     }
-    navigate("/sign-in");
-  } catch (error) {
-    setError("An error occurred");
-  } finally {
-    setLoading(false);
-  }
-};
+    try {
+      setLoading(true);
+      const res = await fetch('/api/auth/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setError(data.message || 'Something went wrong');
+        return;
+      }
+      navigate('/sign-in');
+    } catch (error) {
+      setError('An error occurred');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div
       className="flex items-center justify-center h-screen bg-cream px-4"
-      style={{ backgroundColor: "#ffffff" }}
+      style={{ backgroundColor: '#ffffff' }}
     >
       <div className="flex flex-col md:flex-row w-full max-w-6xl items-center justify-between">
         {/* Left Section with Logo and Tagline */}
@@ -88,7 +88,7 @@ export default function SignUp() {
               disabled={loading}
               className="bg-red-600 text-white p-3 rounded-lg uppercase hover:bg-red-800 disabled:opacity-80"
             >
-              {loading ? "Loading..." : "Sign Up"}
+              {loading ? 'Loading...' : 'Sign Up'}
             </button>
             <OAuth />
           </form>
@@ -101,7 +101,7 @@ export default function SignUp() {
             </Link>
           </div>
           <p className="text-red-700 mt-5">
-            {error ? error.message || "Something went wrong!" : ""}
+            {error ? error.message || 'Something went wrong!' : ''}
           </p>
         </div>
       </div>

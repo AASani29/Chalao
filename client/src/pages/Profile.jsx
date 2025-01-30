@@ -1,23 +1,22 @@
-import { useSelector } from "react-redux";
-import { useRef, useState, useEffect } from "react";
 import {
   getDownloadURL,
   getStorage,
   ref,
   uploadBytesResumable,
-} from "firebase/storage";
-import { app } from "../firebase";
-import { useDispatch } from "react-redux";
+} from 'firebase/storage';
+import { useEffect, useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import Header from '../components/Header';
+import { app } from '../firebase';
 import {
-  updateUserStart,
-  updateUserSuccess,
-  updateUserFailure,
+  deleteUserFailure,
   deleteUserStart,
   deleteUserSuccess,
-  deleteUserFailure,
   signOut,
-} from "../redux/user/userSlice";
-import Header from "../components/Header";
+  updateUserFailure,
+  updateUserStart,
+  updateUserSuccess,
+} from '../redux/user/userSlice';
 
 export default function Profile() {
   const dispatch = useDispatch();
@@ -28,46 +27,46 @@ export default function Profile() {
   const [formData, setFormData] = useState({});
   const [updateSuccess, setUpdateSuccess] = useState(false);
 
-  const { currentUser, loading, error } = useSelector((state) => state.user);
+  const { currentUser, loading, error } = useSelector(state => state.user);
   useEffect(() => {
     if (image) {
       handleFileUpload(image);
     }
   }, [image]);
-  const handleFileUpload = async (image) => {
+  const handleFileUpload = async image => {
     const storage = getStorage(app);
     const fileName = new Date().getTime() + image.name;
     const storageRef = ref(storage, fileName);
     const uploadTask = uploadBytesResumable(storageRef, image);
     uploadTask.on(
-      "state_changed",
-      (snapshot) => {
+      'state_changed',
+      snapshot => {
         const progress =
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         setImagePercent(Math.round(progress));
       },
-      (error) => {
+      error => {
         setImageError(true);
       },
       () => {
-        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) =>
-          setFormData({ ...formData, profilePicture: downloadURL })
+        getDownloadURL(uploadTask.snapshot.ref).then(downloadURL =>
+          setFormData({ ...formData, profilePicture: downloadURL }),
         );
-      }
+      },
     );
   };
-  const handleChange = (e) => {
+  const handleChange = e => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
     try {
       dispatch(updateUserStart());
       const res = await fetch(`/api/user/update/${currentUser._id}`, {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData),
       });
@@ -87,7 +86,7 @@ export default function Profile() {
     try {
       dispatch(deleteUserStart());
       const res = await fetch(`/api/user/delete/${id}`, {
-        method: "DELETE",
+        method: 'DELETE',
       });
       const data = await res.json();
       if (data.success === false) {
@@ -102,14 +101,17 @@ export default function Profile() {
 
   const handleSignOut = async () => {
     try {
-      await fetch("/api/auth/signout");
+      await fetch('/api/auth/signout');
       dispatch(signOut());
     } catch (error) {
       console.log(error);
     }
   };
   return (
-    <div className="bg-cream min-h-screen px-4" style={{ backgroundColor: "#ffffff" }}>
+    <div
+      className="bg-cream min-h-screen px-4"
+      style={{ backgroundColor: '#ffffff' }}
+    >
       <Header />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-6xl mx-auto py-8">
         {/* Left Section with Profile Picture and Info */}
@@ -125,7 +127,7 @@ export default function Profile() {
             ref={fileRef}
             hidden
             accept="image/*"
-            onChange={(e) => setImage(e.target.files[0])}
+            onChange={e => setImage(e.target.files[0])}
           />
           <p className="text-sm text-center mb-4">
             {imageError ? (
@@ -135,9 +137,11 @@ export default function Profile() {
             ) : imagePercent > 0 && imagePercent < 100 ? (
               <span className="text-slate-700">{`Uploading: ${imagePercent} %`}</span>
             ) : imagePercent === 100 ? (
-              <span className="text-green-700">Image uploaded successfully</span>
+              <span className="text-green-700">
+                Image uploaded successfully
+              </span>
             ) : (
-              ""
+              ''
             )}
           </p>
         </div>
@@ -172,7 +176,7 @@ export default function Profile() {
               onChange={handleChange}
             />
             <button className="bg-red-800 text-white font-semibold p-3 rounded-lg uppercase hover:bg-red-600">
-              {loading ? "Loading..." : "Update"}
+              {loading ? 'Loading...' : 'Update'}
             </button>
           </form>
           <div className="flex justify-between mt-5">
@@ -190,10 +194,10 @@ export default function Profile() {
             </span>
           </div>
           <p className="text-red-700 mt-5 font-semibold text-center">
-            {error && "Something went wrong!"}
+            {error && 'Something went wrong!'}
           </p>
           <p className="text-green-700 mt-5 font-semibold text-center">
-            {updateSuccess && "User is updated successfully!"}
+            {updateSuccess && 'User is updated successfully!'}
           </p>
         </div>
       </div>
