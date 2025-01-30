@@ -7,7 +7,10 @@ import LandingPage from './pages/LandingPage';
 import Profile from './pages/Profile';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
-
+import Registration from './pages/Registration';
+import License from './pages/License';
+import AdminUsers from './pages/AdminUsers';
+import AdminLicense from './pages/AdminLicense';
 export default function App() {
   return (
     <BrowserRouter>
@@ -18,7 +21,10 @@ export default function App() {
         <Route path="/admindashboard" element={<AdminDashboard />} />
         <Route path="/" element={<LandingPage />} />
         <Route path="/exam" element={<Exam />} />
-
+        <Route path="/register" element={<Registration />} />
+        <Route path="/licensepage" element={<License />} />
+        <Route path="/admin/users" element={<AdminUsers />} />
+        <Route path="/admin/licenses" element={<AdminLicense />} />
         <Route element={<PrivateRoute />}>
           <Route path="/profile" element={<Profile />} />
         </Route>
