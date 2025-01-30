@@ -1,16 +1,18 @@
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 export default function Header() {
-  const { currentUser } = useSelector((state) => state.user);
+  const { currentUser } = useSelector(state => state.user);
 
   return (
-    <header className="pl-10 pr-10 bg-cream text-white "
-    style={{ backgroundColor: "#ffffff" }}>
+    <header
+      className="pl-10 pr-10 bg-cream text-white "
+      style={{ backgroundColor: '#ffffff' }}
+    >
       <div className="container mx-auto px-4 flex justify-between items-center py-3">
         <div className="flex items-center">
           <Link to="/home">
-            <img src="/Logo.png" width={140} height={100}/>
+            <img src="/Logo.png" width={140} height={100} />
           </Link>
         </div>
 
@@ -55,10 +57,7 @@ export default function Header() {
             Community
           </Link>
 
-          <Link
-            to="/profile"
-            className="flex items-center space-x-2 font-bold"
-          >
+          <Link to="/profile" className="flex items-center space-x-2 font-bold">
             {currentUser ? (
               <img
                 src={currentUser.profilePicture}
