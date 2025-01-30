@@ -42,14 +42,14 @@ export default function Registration() {
   };
 
   const submitForm = async () => {
-    const apiUrl = "http://localhost:3000/api/licenses"; // Replace with your backend URL
+    const apiUrl = "http://localhost:3000/api/licenses"; 
     const formDataToSubmit = new FormData();
 
     // Append text fields
     Object.keys(formData).forEach((key) => {
       if (key !== "attachments") {
         if (typeof formData[key] === "object" && !Array.isArray(formData[key])) {
-          // If the field is an object (e.g., applicantBasicInfo or addressInfo), stringify it
+          
           formDataToSubmit.append(key, JSON.stringify(formData[key]));
         } else {
           formDataToSubmit.append(key, formData[key]);
@@ -57,7 +57,7 @@ export default function Registration() {
       }
     });
 
-    // Append file fields
+    
     Object.keys(formData.attachments).forEach((key) => {
       if (formData.attachments[key]) {
         formDataToSubmit.append(key, formData.attachments[key]);
@@ -84,7 +84,7 @@ export default function Registration() {
       <div className="container mx-auto py-8 px-4">
         <div className="bg-white shadow-lg rounded-lg w-full max-w-5xl mx-auto p-6">
           {isSubmitted ? (
-            // Success Popup
+           
             <div className="text-center">
               <h1 className="text-2xl font-bold text-green-600 mb-4">
                 Form Submitted Successfully!
@@ -93,7 +93,7 @@ export default function Registration() {
                 Thank you for submitting your application. We will process it shortly.
               </p>
               <button
-                onClick={() => setIsSubmitted(false)} // Reset for testing or future form submissions
+                onClick={() => setIsSubmitted(false)} 
                 className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg"
               >
                 Close
